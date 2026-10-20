@@ -10,10 +10,14 @@ from benchmark_utils import level_zero, read_zarr_image, read_zarr_labels
 
 
 def main():
-    notebook = nbformat.read('BBBC039_CellposeSAM_OMEZarr_Benchmark.ipynb', as_version=4)
+    notebook = nbformat.read('run_benchmark.ipynb', as_version=4)
     nbformat.validate(notebook)
     assert all(output.output_type != 'error' for cell in notebook.cells if cell.cell_type == 'code'
                for output in cell.outputs)
+    counts = [cell.execution_count for cell in notebook.cells if cell.cell_type == 'code']
+    assert counts == list(range(1, len(counts) + 1)), (
+        f'Saved outputs are not from one top-to-bottom run (execution counts {counts}); '
+        'use Restart Kernel and Run All Cells, then save')
     for version in [2, 3]:
         with tempfile.TemporaryDirectory() as tmp:
             group = zarr.open_group(tmp, mode='w', zarr_format=version)
@@ -82,7 +86,7 @@ def main():
     features = pd.read_parquet(root / 'nucleus_features.parquet')
     assert 'intensity_mean' in features and 'mean_intensity' not in features
     assert (root / 'results.md').read_text().strip()
-    print('Passed: both NGFF layouts; train/validation-only selection; 50 complete test stores; 1,500 AP scores; hardware/timing records; decoder audit; current feature names.')
+    print('Passed: single top-to-bottom notebook run; both NGFF layouts; train/validation-only selection; 50 complete test stores; 1,500 AP scores; hardware/timing records; decoder audit; current feature names.')
 
 
 if __name__ == '__main__':

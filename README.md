@@ -1,5 +1,7 @@
 # BBBC039 segmentation comparison
 
+**Findings.** On the 50 official test fields, CellposeSAM `cpsam_v2` exceeds a tuned Otsu + watershed baseline by 0.165 mAP (95% CI 0.150 to 0.179). It is not distinguishable from the tuned Cellpose 3 `nuclei` model (difference −0.006, 95% CI −0.013 to 0.001), which ran about 20 times faster per field on the same machine. All three methods score lowest on fields with many touching nuclei. These are in-distribution results with possible pretraining overlap, not a generalisation claim.
+
 All 50 official BBBC039 test fields, comparing Otsu + distance-transform watershed, CellposeSAM `cpsam_v2`, and legacy Cellpose `nuclei`. Baseline inference parameters are selected on the official training/validation splits; no model weights are fine-tuned.
 
 Treat these scores as a comparison with possible training overlap, potentially in-distribution. Exact image-level overlap with the pretrained weights remains unresolved; see [the provenance review](TRAINING_OVERLAP.md). An independent-dataset generalisation study remains a later step.
@@ -12,7 +14,7 @@ Run on 20 October 2026. Values below are mean image scores with 95% image-bootst
 | CellposeSAM cpsam_v2 | 0.792 (0.766–0.812) | 0.955 | 4.10 | mps |
 | Cellpose 3 nuclei | 0.798 (0.768–0.821) | 0.951 | 0.21 | mps |
 
-The paired test mAP differences were cpsam_v2 - watershed: 0.165 (95% CI 0.150–0.179); cpsam_v2 - nuclei: -0.006 (95% CI -0.013–0.001). Among the descriptive strata, the lowest mean mAP occurred for watershed: many touching nuclei (mAP 0.556, n=12); cpsam_v2: many touching nuclei (mAP 0.735, n=12); nuclei: many touching nuclei (mAP 0.730, n=12), which identifies associations to inspect in the image panels rather than a proven failure mechanism. The neural-model mAP difference remains uncertain on these fields; timings are indicative across CPU/GPU and processes, and unresolved pretraining overlap prevents an independent-generalisation claim.
+The paired test mAP differences were cpsam_v2 - watershed: 0.165 (95% CI 0.150 to 0.179); cpsam_v2 - nuclei: -0.006 (95% CI -0.013 to 0.001). Among the descriptive strata, the lowest mean mAP occurred for watershed: many touching nuclei (mAP 0.556, n=12); cpsam_v2: many touching nuclei (mAP 0.735, n=12); nuclei: many touching nuclei (mAP 0.730, n=12), which identifies associations to inspect in the image panels rather than a proven failure mechanism. On these fields, cpsam_v2 has higher mAP than watershed; the cpsam_v2 versus nuclei difference is unresolved (95% CI includes 0); timings are indicative across CPU/GPU and processes, and unresolved pretraining overlap prevents an independent-generalisation claim.
 
 ![AP curve](bbbc039_demo/results/ap_curve.png)
 
@@ -20,7 +22,7 @@ The paired test mAP differences were cpsam_v2 - watershed: 0.165 (95% CI 0.150�
 
 ```bash
 conda activate cell_analysis
-jupyter lab BBBC039_CellposeSAM_OMEZarr_Benchmark.ipynb
+jupyter lab run_benchmark.ipynb
 ```
 
 Select **Python (cell_analysis)** and run the cells in order. The notebook converts all 200 fields for development and evaluation, ranks candidates on 100 training images, selects from the top three on 50 validation images, and evaluates the frozen choice on the 50 test images. Ties use training mAP then candidate order. Earlier fixed-parameter results used these test images, so this is a revised evaluation rather than a newly blinded experiment. Test labels do not enter parameter selection.
@@ -47,7 +49,7 @@ conda env create -f environment-legacy.yml
 conda run -n cell_analysis python -m ipykernel install --user --name cell_analysis --display-name "Python (cell_analysis)"
 ```
 
-After running the notebook, validate the saved artifacts with:
+After a single Restart Kernel and Run All Cells (the verifier rejects outputs saved from more than one kernel session), validate the saved artifacts with:
 
 ```bash
 conda run -n cell_analysis python verify_benchmark.py
