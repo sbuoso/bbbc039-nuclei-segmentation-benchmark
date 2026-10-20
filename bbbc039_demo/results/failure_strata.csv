@@ -1,0 +1,19 @@
+stratum,method,n_images,mean_map
+high foreground fraction,watershed,13,0.6416033277144799
+high foreground fraction,cpsam_v2,13,0.8014496198067298
+high foreground fraction,nuclei,13,0.8039999145727891
+low foreground fraction,watershed,16,0.5846623638644814
+low foreground fraction,cpsam_v2,16,0.756589911878109
+low foreground fraction,nuclei,16,0.7671837192028761
+low mean intensity,watershed,16,0.5885073924437165
+low mean intensity,cpsam_v2,16,0.7535139992833138
+low mean intensity,nuclei,16,0.7578461114317179
+high mean intensity,watershed,6,0.6478674014409384
+high mean intensity,cpsam_v2,6,0.8198083738485972
+high mean intensity,nuclei,6,0.8157420059045156
+many touching nuclei,watershed,12,0.5561374636987845
+many touching nuclei,cpsam_v2,12,0.7349132001399994
+many touching nuclei,nuclei,12,0.7295857891440392
+few touching nuclei,watershed,13,0.6529950866332421
+few touching nuclei,cpsam_v2,13,0.8165159546411954
+few touching nuclei,nuclei,13,0.8342305742777311

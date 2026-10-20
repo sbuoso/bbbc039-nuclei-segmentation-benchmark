@@ -1,0 +1,16 @@
+cellpose==4.2.1.1
+ome-zarr==0.15.0
+zarr==3.1.6
+numpy==2.4.6
+scikit-image==0.26.0
+scipy==1.17.1
+pandas==3.0.6
+matplotlib==3.11.2
+tqdm==4.70.1
+tifffile==2026.3.3
+pyarrow==26.0.0
+napari[pyqt6]==0.9.2
+napari-ome-zarr==0.10.0
+jupyterlab==4.6.4
+ipykernel==6.31.0
+torch==2.14.1

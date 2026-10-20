@@ -1,0 +1,32 @@
+{
+  "diameter": 27,
+  "candidates": [
+    12,
+    17,
+    22,
+    27,
+    32
+  ],
+  "shortlist": [
+    27,
+    32,
+    22
+  ],
+  "training_mean_map": {
+    "12": 0.7655238115787506,
+    "17": 0.792500796020031,
+    "22": 0.8063209283351899,
+    "27": 0.8089263570308686,
+    "32": 0.8065996631979943
+  },
+  "validation_mean_map": {
+    "27": 0.8061138498783111,
+    "32": 0.8059117817878723,
+    "22": 0.8050290703773498
+  },
+  "n_training": 100,
+  "n_validation": 50,
+  "objective": "mean image AP at IoU 0.50:0.05:0.95",
+  "empty_case": "AP=1 when GT and prediction are both empty",
+  "selection": "top 3 training candidates, best validation mAP; ties use training mAP then diameter"
+}

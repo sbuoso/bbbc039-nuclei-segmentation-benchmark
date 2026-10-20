@@ -1,0 +1,6 @@
+bbbc039_demo/*
+!bbbc039_demo/results/
+bbbc039_demo/results/nucleus_features.parquet
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store

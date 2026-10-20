@@ -1,0 +1,172 @@
+{
+  "n_images": 50,
+  "split": "official test",
+  "methods": [
+    "watershed",
+    "cpsam_v2",
+    "nuclei"
+  ],
+  "training_overlap": "in-distribution/overlap-risk; exact image overlap unresolved",
+  "model_sha256": "0f1cc3f7ecdd8a037a57c6c48d9d8921391be4cbce3fa9f13c3e3a2e1253c667",
+  "device": "mps",
+  "iou_thresholds": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "bootstrap_resamples": 10000,
+  "seed": 7,
+  "watershed_parameters": {
+    "sigma": 0.5,
+    "min_area": 40,
+    "min_distance": 9
+  },
+  "hardware": {
+    "watershed": {
+      "device": "cpu",
+      "cpu": "Apple M2 Pro",
+      "accelerator": null,
+      "memory_bytes": 34359738368,
+      "logical_cpus": 10,
+      "machine": "arm64",
+      "os": "macOS-26.6.2-arm64-arm-64bit"
+    },
+    "cpsam_v2": {
+      "device": "mps",
+      "cpu": "Apple M2 Pro",
+      "accelerator": "Apple M2 Pro integrated GPU",
+      "memory_bytes": 34359738368,
+      "logical_cpus": 10,
+      "machine": "arm64",
+      "os": "macOS-26.6.2-arm64-arm-64bit"
+    },
+    "nuclei": {
+      "device": "mps",
+      "cpu": "Apple M2 Pro",
+      "accelerator": "Apple M2 Pro integrated GPU",
+      "memory_bytes": 34359738368,
+      "logical_cpus": 10,
+      "machine": "arm64",
+      "os": "macOS-26.6.2-arm64-arm-64bit"
+    }
+  },
+  "timing": "indicative; one untimed warm-up per method; GPU synchronization; preprocessing included; loading, process startup and I/O excluded",
+  "baseline_selection": "100 training fields: fixed grid; top 3 shortlisted; 50 validation fields select; no test labels",
+  "watershed_selection": {
+    "parameters": {
+      "sigma": 0.5,
+      "min_area": 40,
+      "min_distance": 9
+    },
+    "grid": {
+      "sigma": [
+        0.5,
+        1.0,
+        1.5
+      ],
+      "min_area": [
+        20,
+        40,
+        80
+      ],
+      "min_distance": [
+        5,
+        7,
+        9
+      ]
+    },
+    "shortlist": [
+      8,
+      5,
+      2
+    ],
+    "selected_candidate": 5,
+    "training_mean_map": [
+      0.47311850395053623,
+      0.5713729320466518,
+      0.6163760845176876,
+      0.475495966039598,
+      0.5741322625800968,
+      0.6189032223075628,
+      0.47640935573726895,
+      0.5748170719482004,
+      0.6196713794954121,
+      0.46743368223309517,
+      0.5585984048619866,
+      0.6029704541526735,
+      0.46993210235610605,
+      0.5615986221656203,
+      0.6054742730222642,
+      0.47034408774226905,
+      0.5617721739038825,
+      0.6057598994486034,
+      0.45762425715103744,
+      0.5446323732100428,
+      0.5799197402782739,
+      0.45967485373839734,
+      0.5469412408396601,
+      0.5821941798180341,
+      0.46035245204344394,
+      0.5474740095064043,
+      0.5830362358130514
+    ],
+    "validation_mean_map": {
+      "8": 0.6105083113908768,
+      "5": 0.6106102442741395,
+      "2": 0.6084073901176452
+    },
+    "n_training": 100,
+    "n_validation": 50,
+    "objective": "mean image AP at IoU 0.50:0.05:0.95"
+  },
+  "legacy_selection": {
+    "diameter": 27,
+    "candidates": [
+      12,
+      17,
+      22,
+      27,
+      32
+    ],
+    "shortlist": [
+      27,
+      32,
+      22
+    ],
+    "training_mean_map": {
+      "12": 0.7655238115787506,
+      "17": 0.792500796020031,
+      "22": 0.8063209283351899,
+      "27": 0.8089263570308686,
+      "32": 0.8065996631979943
+    },
+    "validation_mean_map": {
+      "27": 0.8061138498783111,
+      "32": 0.8059117817878723,
+      "22": 0.8050290703773498
+    },
+    "n_training": 100,
+    "n_validation": 50,
+    "objective": "mean image AP at IoU 0.50:0.05:0.95",
+    "empty_case": "AP=1 when GT and prediction are both empty",
+    "selection": "top 3 training candidates, best validation mAP; ties use training mAP then diameter"
+  },
+  "packages": {
+    "cellpose": "4.2.1.1",
+    "numpy": "2.4.6",
+    "torch": "2.14.1",
+    "ome-zarr": "0.15.0",
+    "zarr": "3.1.6",
+    "scikit-image": "0.26.0",
+    "scipy": "1.17.1",
+    "pandas": "3.0.6",
+    "tifffile": "2026.3.3"
+  }
+}

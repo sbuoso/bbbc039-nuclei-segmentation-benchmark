@@ -1,0 +1,29 @@
+{
+  "watershed": {
+    "device": "cpu",
+    "cpu": "Apple M2 Pro",
+    "accelerator": null,
+    "memory_bytes": 34359738368,
+    "logical_cpus": 10,
+    "machine": "arm64",
+    "os": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "cpsam_v2": {
+    "device": "mps",
+    "cpu": "Apple M2 Pro",
+    "accelerator": "Apple M2 Pro integrated GPU",
+    "memory_bytes": 34359738368,
+    "logical_cpus": 10,
+    "machine": "arm64",
+    "os": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "nuclei": {
+    "device": "mps",
+    "cpu": "Apple M2 Pro",
+    "accelerator": "Apple M2 Pro integrated GPU",
+    "memory_bytes": 34359738368,
+    "logical_cpus": 10,
+    "machine": "arm64",
+    "os": "macOS-26.6.2-arm64-arm-64bit"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "hardware": {
+    "device": "mps",
+    "cpu": "Apple M2 Pro",
+    "accelerator": "Apple M2 Pro integrated GPU",
+    "memory_bytes": 34359738368,
+    "logical_cpus": 10,
+    "machine": "arm64",
+    "os": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "model": "nuclei",
+  "sha256": "89ca45e4a45048d5010d29621466b1274b91b3dcb9714dce9f9e90a9a8671303",
+  "diameter": 27,
+  "timing": "indicative; untimed warm-up; synchronize before/after; preprocessing included; model loading, process startup and I/O excluded",
+  "process": "separate conda environment",
+  "packages": {
+    "cellpose": "3.1.1.3",
+    "numpy": "2.0.2",
+    "torch": "2.14.1",
+    "ome-zarr": "0.15.0",
+    "zarr": "3.1.6"
+  }
+}

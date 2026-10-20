@@ -1,0 +1,8 @@
+name: cell_analysis_legacy
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.17
+  - pip=26.2.1
+  - pip:
+      - -r requirements-legacy-lock.txt
